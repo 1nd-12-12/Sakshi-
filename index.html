@@ -1,0 +1,705 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080808">
+<title>Sakshuuuuu | The Royal Edition</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700;800&family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --gold: #d7b46a;
+  --light-gold: #f4dfac;
+  --black: #080808;
+  --white: #f8f1e5;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: 'Montserrat', sans-serif;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 10;
+  opacity: .12;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.22'/%3E%3C/svg%3E");
+}
+
+#loader {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: #080808;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  transition: opacity 1s, visibility 1s;
+}
+
+#loader.hide {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.loader-name {
+  font-family: 'Playfair Display', serif;
+  color: var(--gold);
+  font-size: clamp(32px, 9vw, 65px);
+  letter-spacing: 8px;
+  animation: glow 1.5s infinite alternate;
+}
+
+.loader-line {
+  width: 130px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  margin-top: 20px;
+}
+
+@keyframes glow {
+  from { text-shadow: 0 0 5px #b28b43; }
+  to { text-shadow: 0 0 30px #e8c878, 0 0 60px #b28b43; }
+}
+
+nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 25px 8%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 5;
+}
+
+.logo {
+  font-family: 'Playfair Display', serif;
+  color: var(--gold);
+  letter-spacing: 3px;
+  font-size: 17px;
+}
+
+.nav-tag {
+  color: #a8946e;
+  font-size: 9px;
+  letter-spacing: 3px;
+}
+
+.hero {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 100px 18px 50px;
+  position: relative;
+  background:
+    radial-gradient(ellipse at center, #302310 0%, #130f09 35%, #080808 75%);
+}
+
+.hero::before,
+.hero::after {
+  content: "";
+  position: absolute;
+  width: 270px;
+  height: 270px;
+  border: 1px solid #d0a84d22;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.hero::after {
+  width: 320px;
+  height: 320px;
+}
+
+.eyebrow {
+  font-size: 10px;
+  letter-spacing: 6px;
+  color: var(--gold);
+  margin-bottom: 35px;
+  animation: reveal 1s both;
+}
+
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(43px, 12vw, 115px);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: 2px;
+  background: linear-gradient(120deg, #99712e, #fff0bd, #b98d43, #f9e3aa);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  background-size: 200% auto;
+  animation: goldshine 5s linear infinite, reveal 1.2s .3s both;
+  position: relative;
+  z-index: 2;
+}
+
+@keyframes goldshine {
+  to { background-position: 200% center; }
+}
+
+.hero-subtitle {
+  margin-top: 25px;
+  color: #e9d5aa;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(20px, 5vw, 32px);
+  letter-spacing: 5px;
+  animation: reveal 1.2s .6s both;
+}
+
+.hero-desc {
+  margin-top: 18px;
+  color: #a99a7d;
+  font-size: 10px;
+  letter-spacing: 3px;
+  line-height: 2;
+  animation: reveal 1.2s .8s both;
+}
+
+.scroll {
+  position: absolute;
+  bottom: 30px;
+  color: var(--gold);
+  font-size: 9px;
+  letter-spacing: 4px;
+  animation: float 2s infinite;
+}
+
+@keyframes float {
+  50% { transform: translateY(8px); }
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(35px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+section {
+  padding: 100px 7%;
+  position: relative;
+}
+
+.section-label {
+  color: var(--gold);
+  font-size: 10px;
+  letter-spacing: 5px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.section-heading {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(32px, 7vw, 65px);
+  text-align: center;
+  color: var(--white);
+  font-weight: 500;
+}
+
+.section-heading span {
+  color: var(--gold);
+  font-style: italic;
+}
+
+.intro {
+  text-align: center;
+  background: linear-gradient(180deg, #080808, #100d08, #080808);
+}
+
+.intro-text {
+  max-width: 650px;
+  margin: 30px auto 0;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(21px, 4vw, 29px);
+  line-height: 1.8;
+  color: #c9bda7;
+}
+
+.gold-line {
+  width: 70px;
+  height: 1px;
+  background: var(--gold);
+  margin: 30px auto;
+}
+
+.typography {
+  overflow: hidden;
+  padding: 70px 0;
+  background: #0b0a08;
+}
+
+.marquee {
+  white-space: nowrap;
+  display: flex;
+  width: max-content;
+  animation: marquee 22s linear infinite;
+  margin: 15px 0;
+}
+
+.marquee.reverse {
+  animation-direction: reverse;
+}
+
+.marquee span {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(45px, 11vw, 110px);
+  font-weight: 700;
+  padding-right: 35px;
+  color: transparent;
+  -webkit-text-stroke: 1px #c8a35f;
+}
+
+.marquee .filled {
+  color: #d7b46a;
+  -webkit-text-stroke: 0;
+}
+
+@keyframes marquee {
+  to { transform: translateX(-50%); }
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  max-width: 950px;
+  margin: 55px auto 0;
+}
+
+.card {
+  border: 1px solid #a986492e;
+  padding: 38px 15px;
+  text-align: center;
+  background: linear-gradient(145deg, #17120b, #090909);
+  transition: .4s;
+}
+
+.card:hover {
+  transform: translateY(-9px);
+  border-color: var(--gold);
+  box-shadow: 0 10px 40px #d5ae4920;
+}
+
+.card .symbol {
+  color: var(--gold);
+  font-size: 28px;
+  margin-bottom: 18px;
+}
+
+.card h3 {
+  font-family: 'Playfair Display', serif;
+  color: #f0d8a5;
+  font-size: 24px;
+  margin-bottom: 12px;
+}
+
+.card p {
+  font-size: 10px;
+  line-height: 1.8;
+  color: #a99d8b;
+  letter-spacing: 1px;
+}
+
+.big-name {
+  background: radial-gradient(ellipse, #291d0d, #080808 70%);
+  text-align: center;
+  padding: 120px 10px;
+}
+
+.big-name h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(40px, 12vw, 120px);
+  font-weight: 800;
+  color: var(--gold);
+  text-shadow: 0 0 40px #b78c3a42;
+  overflow-wrap: anywhere;
+}
+
+.big-name p {
+  font-family: 'Cormorant Garamond', serif;
+  color: #e4d2ad;
+  font-size: 24px;
+  letter-spacing: 4px;
+  margin-top: 25px;
+}
+
+.message {
+  text-align: center;
+  background: #0b0a08;
+}
+
+.message-box {
+  max-width: 720px;
+  margin: 45px auto 0;
+  border: 1px solid #b995503f;
+  padding: clamp(30px, 7vw, 65px);
+  position: relative;
+  background: linear-gradient(135deg, #151109, #090909);
+}
+
+.message-box::before {
+  content: "✦";
+  position: absolute;
+  top: -17px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #0b0a08;
+  color: var(--gold);
+  padding: 0 15px;
+  font-size: 24px;
+}
+
+.message-box p {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(21px, 4vw, 30px);
+  line-height: 1.8;
+  color: #d6c6a8;
+}
+
+.surprise-btn {
+  margin-top: 35px;
+  padding: 15px 30px;
+  background: transparent;
+  color: var(--gold);
+  border: 1px solid var(--gold);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10px;
+  letter-spacing: 3px;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.surprise-btn:hover {
+  background: var(--gold);
+  color: #080808;
+  box-shadow: 0 0 30px #d7b46a40;
+}
+
+#secret {
+  display: none;
+  margin-top: 30px;
+  color: #f3dcaa;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(23px, 5vw, 37px);
+  line-height: 1.5;
+  animation: reveal .8s both;
+}
+
+.final {
+  min-height: 75svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  background: radial-gradient(ellipse, #2a1e0c, #080808 70%);
+}
+
+.final .crown {
+  font-size: 42px;
+  margin-bottom: 25px;
+}
+
+.final h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(35px, 10vw, 90px);
+  color: var(--gold);
+}
+
+.final p {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 24px;
+  color: #e1d1b1;
+  margin-top: 20px;
+}
+
+.signature {
+  margin-top: 55px;
+  color: #bca36e;
+  letter-spacing: 4px;
+  font-size: 11px;
+}
+
+footer {
+  text-align: center;
+  padding: 25px;
+  border-top: 1px solid #d0aa5420;
+  color: #81745d;
+  font-size: 9px;
+  letter-spacing: 3px;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(35px);
+  transition: opacity 1s, transform 1s;
+}
+
+.reveal.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.spark {
+  position: fixed;
+  width: 4px;
+  height: 4px;
+  background: #e7c77d;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 2;
+  animation: sparkle 3s linear forwards;
+}
+
+@keyframes sparkle {
+  0% { opacity: 0; transform: translateY(0) scale(0); }
+  30% { opacity: .9; }
+  100% { opacity: 0; transform: translateY(-100px) scale(1.5); }
+}
+
+@media(max-width:650px) {
+  nav { padding: 20px 6%; }
+  .nav-tag { font-size: 7px; letter-spacing: 2px; }
+  section { padding: 75px 6%; }
+  .cards { grid-template-columns: 1fr; }
+  .card { padding: 30px 15px; }
+  .hero h1 { letter-spacing: 0; }
+}
+
+@media(prefers-reduced-motion:reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div id="loader">
+  <div class="loader-name">SAKSHUUUUU</div>
+  <div class="loader-line"></div>
+  <p style="color:#a58b56;font-size:9px;letter-spacing:4px;margin-top:20px">
+    PREPARING SOMETHING SPECIAL
+  </p>
+</div>
+
+<nav>
+  <div class="logo">S ✦</div>
+  <div class="nav-tag">THE ROYAL EDITION · 2026</div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="eyebrow">✦ A NAME WORTH CELEBRATING ✦</div>
+  <h1 id="heroName">SAKSHUUUUU</h1>
+  <div class="hero-subtitle">THE QUEEN OF HER OWN WORLD</div>
+  <p class="hero-desc">
+    NOT JUST A NAME.<br>
+    IT'S AN ENTIRE PERSONALITY.
+  </p>
+  <div class="scroll">SCROLL TO EXPLORE ↓</div>
+</header>
+
+<!-- INTRO -->
+<section class="intro reveal">
+  <div class="section-label">01 — THE INTRODUCTION</div>
+  <h2 class="section-heading">Dear <span>Sakshuuuuu</span>...</h2>
+  <div class="gold-line"></div>
+  <p class="intro-text">
+    Some names sound beautiful.<br>
+    Some people carry a different kind of energy.<br>
+    And then there is YOU — someone who deserves
+    a little extra appreciation.
+    <br><br>
+    This little corner of the internet?
+    It's all about you.
+  </p>
+</section>
+
+<!-- TYPOGRAPHY -->
+<section class="typography">
+  <div class="marquee">
+    <span>SAKSHUUUUU ✦ </span>
+    <span class="filled">SAKSHUUUUU ✦ </span>
+    <span>SAKSHUUUUU ✦ </span>
+    <span class="filled">SAKSHUUUUU ✦ </span>
+  </div>
+  <div class="marquee reverse">
+    <span class="filled">ROYAL ✦ CLASSY ✦ ICONIC ✦ </span>
+    <span>ROYAL ✦ CLASSY ✦ ICONIC ✦ </span>
+    <span class="filled">ROYAL ✦ CLASSY ✦ ICONIC ✦ </span>
+    <span>ROYAL ✦ CLASSY ✦ ICONIC ✦ </span>
+  </div>
+</section>
+
+<!-- PERSONALITY -->
+<section class="reveal">
+  <div class="section-label">02 — THE VIBE</div>
+  <h2 class="section-heading">A LITTLE BIT OF <span>MAGIC</span></h2>
+
+  <div class="cards">
+    <div class="card">
+      <div class="symbol">♛</div>
+      <h3>ROYAL</h3>
+      <p>Not because of a crown,<br>but because of the personality.</p>
+    </div>
+
+    <div class="card">
+      <div class="symbol">✧</div>
+      <h3>CLASSY</h3>
+      <p>Elegance is not loud.<br>It's simply unforgettable.</p>
+    </div>
+
+    <div class="card">
+      <div class="symbol">∞</div>
+      <h3>UNIQUE</h3>
+      <p>One of a kind.<br>Never a copy of anyone.</p>
+    </div>
+  </div>
+</section>
+
+<!-- BIG NAME -->
+<section class="big-name reveal">
+  <div class="section-label">03 — SAY IT LOUD</div>
+  <h2>SAKSHUUUUU</h2>
+  <p>THE NAME. THE VIBE. THE LEGEND.</p>
+</section>
+
+<!-- MESSAGE -->
+<section class="message reveal">
+  <div class="section-label">04 — A LITTLE MESSAGE</div>
+  <h2 class="section-heading">Something <span>Special</span></h2>
+
+  <div class="message-box">
+    <p>
+      Life is full of people, but some friendships
+      deserve their own little celebration.
+      <br><br>
+      Keep smiling, keep shining, keep being
+      unapologetically YOU.
+      <br><br>
+      Never let the world make you feel ordinary.
+      You're already amazing in your own way.
+    </p>
+
+    <button class="surprise-btn" id="surpriseBtn">
+      OPEN YOUR SECRET SURPRISE ✦
+    </button>
+
+    <div id="secret">
+      SAKSHUUUUU! 👑<br>
+      NEVER STOP BEING THE ICON YOU ARE. ♡
+    </div>
+  </div>
+</section>
+
+<!-- FINAL -->
+<section class="final">
+  <div class="crown">♛</div>
+  <div class="section-label">THE FINAL CHAPTER</div>
+  <h2>SAKSHUUUUU</h2>
+  <p>Stay rare. Stay royal. Stay YOU.</p>
+  <div class="gold-line"></div>
+  <div class="signature">MADE WITH ♡ BY YOUR ARYAN</div>
+</section>
+
+<footer>
+  A LITTLE WEBSITE · A LOT OF APPRECIATION
+  <br><br>
+  © 2026 YOUR ARYAN
+</footer>
+
+<script>
+// Loader
+window.addEventListener("load", () => {
+  setTimeout(() => {
+    document.getElementById("loader").classList.add("hide");
+  }, 1600);
+});
+
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting) {
+      entry.target.classList.add("show");
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll(".reveal").forEach(el => {
+  observer.observe(el);
+});
+
+// Secret surprise
+const surpriseBtn = document.getElementById("surpriseBtn");
+const secret = document.getElementById("secret");
+
+surpriseBtn.addEventListener("click", () => {
+  if(secret.style.display === "block") {
+    secret.style.display = "none";
+    surpriseBtn.textContent = "OPEN YOUR SECRET SURPRISE ✦";
+  } else {
+    secret.style.display = "block";
+    surpriseBtn.textContent = "CLOSE SURPRISE ✦";
+    createBurst();
+  }
+});
+
+// Golden sparkle particles
+function createSpark() {
+  const spark = document.createElement("div");
+  spark.className = "spark";
+  spark.style.left = Math.random() * 100 + "vw";
+  spark.style.top = (40 + Math.random() * 60) + "vh";
+  spark.style.animationDuration = (2 + Math.random() * 3) + "s";
+  document.body.appendChild(spark);
+
+  setTimeout(() => spark.remove(), 5000);
+}
+
+setInterval(createSpark, 350);
+
+function createBurst() {
+  for(let i = 0; i < 35; i++) {
+    setTimeout(createSpark, i * 35);
+  }
+}
+</script>
+
+</body>
+</html>
